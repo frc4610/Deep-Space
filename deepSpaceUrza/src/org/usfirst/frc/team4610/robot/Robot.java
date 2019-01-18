@@ -125,7 +125,7 @@ public class Robot extends TimedRobot {
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
 		//
-		if (position.getSelected().equals("L"))
+		if (position.getSelected().equals("L")||position.getSelected().equals("R"))
 		{
 			autonomousCommand = new sandAutoBasic();
 		}
@@ -144,6 +144,8 @@ public class Robot extends TimedRobot {
 		autoTimer += 20; //Divide by 1000 for time in seconds, auto periodic is called every 20 ms
 		autoTimeSec = autoTimer / 1000;
 		checkTeleop();
+		SmartDashboard.putNumber("Right Motor Enc", driveBase.getEncValue(true));
+		SmartDashboard.putNumber("Left Motor Enc", driveBase.getEncValue(false));
 		Scheduler.getInstance().run();
 	}
 
@@ -164,6 +166,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		SmartDashboard.putNumber("Right Motor Enc", driveBase.getEncValue(true));
+		SmartDashboard.putNumber("Left Motor Enc", driveBase.getEncValue(false));
 		Scheduler.getInstance().run();
 	}
 
