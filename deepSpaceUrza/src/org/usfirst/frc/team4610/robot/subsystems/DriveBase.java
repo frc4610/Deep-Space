@@ -21,6 +21,7 @@ public class DriveBase extends Subsystem {
 
 	
 	public DriveBase() {
+		//sets up motors and encoders for talons
 		this.RightMotor = new TalonSRX(1); 
 		this.LeftMotor = new TalonSRX(3);
 		this.RightMotorFollow = new VictorSPX(2); 
@@ -40,6 +41,7 @@ public class DriveBase extends Subsystem {
     // here. Call these from Commands.
 
 	public void set(ControlMode mode, double leftvalue, double rightvalue) {
+		//sets motors based on inversion
 		if(Robot.front == 0)
 		{
 		LeftMotor.set(mode, leftvalue);

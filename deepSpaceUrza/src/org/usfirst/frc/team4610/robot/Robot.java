@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team4610.robot.commands.ExampleCommand;
 import org.usfirst.frc.team4610.robot.commands.sandAutoBasic;
 import org.usfirst.frc.team4610.robot.commands.tankDrive;
 import org.usfirst.frc.team4610.robot.subsystems.DriveBase;
@@ -36,13 +35,13 @@ import edu.wpi.first.wpilibj.SPI;
 public class Robot extends TimedRobot {
 	//public static double encMultiFt; Measure the distance the robot goes and its associated encoder value. Multiple feet wanted by this to get encoder value needed
 	//public static double encMultiIn;
-	public static double autoTimer;
-	public static double autoTimeSec;
-	public static double autoSpeed;
-	public static int front;
-	public static boolean interrupt;
-	public static double acceptedTurnTolerance = 5;
-	public static double acceptedJoyTolerance = 5;
+	public static double autoTimer;//tracks time in ms
+	public static double autoTimeSec;//tracks time in seconds
+	public static double autoSpeed;//default speed for drivebase in auto
+	public static int front;//is the originally front still the front, for inversion
+	public static boolean interrupt;//is the driver overriding auto?
+	public static double acceptedTurnTolerance = 5;//obvious, for auto
+	public static double acceptedJoyTolerance = 5;//sets it so that a small jolt doesn't stop auto
 	public static DriveBase driveBase;
 	public static AHRS gyro;
 	public static Preferences prefs;
@@ -146,15 +145,15 @@ public class Robot extends TimedRobot {
 	public void autonomousPeriodic() {
 		autoTimer += 20; //Divide by 1000 for time in seconds, auto periodic is called every 20 ms
 		autoTimeSec = autoTimer / 1000;
-		checkTeleop();
-		SmartDashboard.putNumber("Right Motor Enc", driveBase.getEncValue(true));
+		checkTeleop();//checks for override
+		SmartDashboard.putNumber("Right Motor Enc", driveBase.getEncValue(true));//true is right, false is left, send enc values
 		SmartDashboard.putNumber("Left Motor Enc", driveBase.getEncValue(false));
 		Scheduler.getInstance().run();
 	}
 
 	@Override
 	public void teleopInit() {
-		new tankDrive();
+		new tankDrive();//starts teleop, may be unessecary, test further
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -217,6 +216,7 @@ public class Robot extends TimedRobot {
 	}
 	public static void checkTeleop()
 	{
+		//if anything is pressed, stop auto
 		if(m_oi.buttonR3.get() || m_oi.buttonR4.get() || m_oi.LEFT_JOY.getRawAxis(1) - acceptedJoyTolerance >= 0 || 
 		   m_oi.LEFT_JOY.getRawAxis(1) + acceptedJoyTolerance <= 0  ||  m_oi.RIGHT_JOY.getRawAxis(1) - acceptedJoyTolerance >= 0 ||  
 		   m_oi.RIGHT_JOY.getRawAxis(1) - acceptedJoyTolerance >= 0)

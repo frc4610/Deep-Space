@@ -11,6 +11,7 @@ public class Invert extends Command {
 
 	public int set;
     public Invert(int Set) {
+    	//invert the front/back of the robot
     	this.set = Set;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

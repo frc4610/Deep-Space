@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	//mapping of joysticks
 	public  Joystick LEFT_JOY = new Joystick(0);
 	public  Joystick RIGHT_JOY = new Joystick(1);
 	public  Joystick BACKUP_JOY = new Joystick(2);
@@ -54,6 +55,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	public OI(String driver,String operator) {
+		//different diver control schemes
 		if(driver.equals("Winte"))
 		{
 		//button1.whenPressed(new LiftBottom()); example

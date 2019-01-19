@@ -15,6 +15,7 @@ public class turn extends Command {
 	private double speed;
 	
     public turn(double Degrees, double Speed) {
+    	//turn Degrees degrees at speed Speed
     	requires(Robot.driveBase);
     	this.degrees = Degrees;
     	this.speed = Speed;
@@ -31,13 +32,13 @@ public class turn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(this.degrees > 0)
+    	if(degrees > 0)
     	{
-    		Robot.driveBase.set(ControlMode.PercentOutput, speed, speed);
+    		Robot.driveBase.set(ControlMode.PercentOutput, -speed, speed);
     	}
     	else if(degrees < 0)
     	{
-    		Robot.driveBase.set(ControlMode.PercentOutput, speed, speed);
+    		Robot.driveBase.set(ControlMode.PercentOutput, speed, -speed);
     	}
     	
     }

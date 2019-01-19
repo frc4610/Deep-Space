@@ -16,6 +16,7 @@ public class forward extends Command {
 	private double speedL;
 	
     public forward(double distance, double SpeedL, double SpeedR) {
+    	//go forward with different or same speeds on each side
     	requires(Robot.driveBase);
     	this.encValue = distance;
     	this.speedR = SpeedR;

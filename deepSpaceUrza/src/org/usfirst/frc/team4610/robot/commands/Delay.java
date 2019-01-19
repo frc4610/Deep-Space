@@ -13,6 +13,7 @@ public class Delay extends Command {
 
 	private double sec;
     public Delay(double Sec) {
+    	//stops for Sec seconds
     	requires(Robot.driveBase);
     	this.sec = Sec;
         // Use requires() here to declare subsystem dependencies

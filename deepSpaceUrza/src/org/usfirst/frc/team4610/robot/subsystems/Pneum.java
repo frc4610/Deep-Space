@@ -14,6 +14,7 @@ public class Pneum extends Subsystem {
 	private DoubleSolenoid driveDs12;
 	
 	public Pneum() {
+		//sets up pnuematics
 		this.compressor = new Compressor();
 		this.driveDs12 = new DoubleSolenoid(1,2);
 	}

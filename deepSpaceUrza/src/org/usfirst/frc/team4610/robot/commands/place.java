@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class place extends Command {
 
     public place(/*object*/) {
+    	//places a hatch or cargo
     	//requires(mechanism);
     	//this.Object = object;
         // Use requires() here to declare subsystem dependencies
