@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
 	DoubleSolenoid driverDs12=new DoubleSolenoid(1,2); Basic pneum code, make into subsystems
 	DoubleSolenoid intakeDs34=new DoubleSolenoid(3,4);*/
 	Command autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	//SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -80,12 +80,15 @@ public class Robot extends TimedRobot {
 		position.addObject("Right", "r");
 		driver.addDefault("Winte", "W");
 		operator.addDefault("Nathan", "N");
+		SmartDashboard.putData("Position", position);
+		SmartDashboard.putData("Driver", driver);
+		SmartDashboard.putData("Operator", operator);
 		//.getSelected to get value for smart dash board values
 		m_oi = new OI(driver.getSelected(), operator.getSelected()); // Hector is a default, change for the assumed driver later
 		prefs = Preferences.getInstance();
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		//SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
 	/**
